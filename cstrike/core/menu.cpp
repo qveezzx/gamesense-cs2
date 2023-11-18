@@ -76,7 +76,7 @@ void MENU::RenderMainWindow()
 
 	// handle main window get out of screen bound
 	// @note: we call this here so it will override the previous SetNextWindowPos
-	if (ImGuiWindow* pMainWindow = ImGui::FindWindowByName(CS_XOR("asphyxia")); pMainWindow != nullptr)
+	if (ImGuiWindow* pMainWindow = ImGui::FindWindowByName(CS_XOR("gamesense")); pMainWindow != nullptr)
 	{
 		bool bRequireClamp = false;
 		ImVec2 vecWindowPos = pMainWindow->Pos;
@@ -106,7 +106,7 @@ void MENU::RenderMainWindow()
 	}
 
 	// render main window
-	ImGui::Begin(CS_XOR("asphyxia"), &bMainWindowOpened, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoCollapse);
+	ImGui::Begin(CS_XOR("gamesense"), &bMainWindowOpened, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoCollapse);
 	{
 		const ImVec2 vecMenuPos = ImGui::GetWindowPos();
 		const ImVec2 vecMenuSize = ImGui::GetWindowSize();
@@ -115,8 +115,8 @@ void MENU::RenderMainWindow()
 		if (C_GET(unsigned int, Vars.bMenuAdditional) & MENU_ADDITION_GLOW)
 			D::AddDrawListShadowRect(ImGui::GetBackgroundDrawList(), vecMenuPos, vecMenuPos + vecMenuSize, C_GET(ColorPickerVar_t, Vars.colAccent0).colValue, 64.f * flDpiScale, style.WindowRounding, ImDrawFlags_ShadowCutOutShapeBackground);
 
-		const ImVec2 vecTitleSize = FONT::pMenu[C_GET(int, Vars.nDpiScale)]->CalcTextSizeA(12.f * flDpiScale, FLT_MAX, -1.f, CS_XOR("asphyxia"));
-		pDrawList->AddText(ImVec2(vecMenuPos.x + vecMenuSize.x - style.WindowPadding.x - vecTitleSize.x, vecMenuPos.y + style.WindowPadding.y), ImGui::GetColorU32(ImGuiCol_Text), CS_XOR("asphyxia"));
+		const ImVec2 vecTitleSize = FONT::pMenu[C_GET(int, Vars.nDpiScale)]->CalcTextSizeA(12.f * flDpiScale, FLT_MAX, -1.f, CS_XOR("gamesense"));
+		pDrawList->AddText(ImVec2(vecMenuPos.x + vecMenuSize.x - style.WindowPadding.x - vecTitleSize.x, vecMenuPos.y + style.WindowPadding.y), ImGui::GetColorU32(ImGuiCol_Text), CS_XOR("gamesense"));
 
 		static const CTab arrTabs[] = {
 			{ "ragebot", &T::RageBot },
@@ -169,7 +169,7 @@ void MENU::RenderOverlayPreviewWindow()
 		}
 
 		if (const auto& nameOverlayConfig = C_GET(TextOverlayVar_t, Vars.overlayName); nameOverlayConfig.bEnable)
-			context.AddComponent(new CTextComponent(true, SIDE_TOP, DIR_TOP, FONT::pVisual, CS_XOR("asphyxia"), Vars.overlayName));
+			context.AddComponent(new CTextComponent(true, SIDE_TOP, DIR_TOP, FONT::pVisual, CS_XOR("gamesense"), Vars.overlayName));
 
 		if (const auto& healthOverlayConfig = C_GET(BarOverlayVar_t, Vars.overlayHealthBar); healthOverlayConfig.bEnable)
 		{
@@ -229,9 +229,9 @@ void MENU::RenderWatermark()
 		if (I::Engine->IsInGame())
 			ImGui::TextColored(ImVec4(1.0f, 0.0f, 0.0f, 1.0f), CS_XOR("in-game"));
 
-		static ImVec2 vecNameSize = ImGui::CalcTextSize(CS_XOR("asphyxia | " __DATE__ " " __TIME__));
+		static ImVec2 vecNameSize = ImGui::CalcTextSize(CS_XOR("gamesense.vip | " __DATE__ " " __TIME__));
 		ImGui::SameLine(ImGui::GetContentRegionMax().x - vecNameSize.x - style.FramePadding.x);
-		ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), CS_XOR("asphyxia | " __DATE__ " " __TIME__));
+		ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), CS_XOR("gamesense.vip | " __DATE__ " " __TIME__));
 	}
 	ImGui::EndMainMenuBar();
 	ImGui::PopFont();
