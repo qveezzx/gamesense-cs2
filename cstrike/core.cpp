@@ -39,7 +39,7 @@ bool CORE::GetWorkingPath(wchar_t* wszDestination)
 	// get path to user documents
 	if (SUCCEEDED(::SHGetKnownFolderPath(FOLDERID_Documents, KF_FLAG_CREATE, nullptr, &wszPathToDocuments)))
 	{
-		CRT::StringCat(CRT::StringCopy(wszDestination, wszPathToDocuments), CS_XOR(L"\\.asphyxia\\"));
+		CRT::StringCat(CRT::StringCopy(wszDestination, wszPathToDocuments), CS_XOR(L"\\.gamesense\\"));
 		bSuccess = true;
 
 		// create directory if it doesn't exist
@@ -60,14 +60,14 @@ bool CORE::GetWorkingPath(wchar_t* wszDestination)
 static bool Setup(HMODULE hModule)
 {
 #ifdef CS_LOG_CONSOLE
-	if (!L::AttachConsole(CS_XOR(L"asphyxia developer-mode")))
+	if (!L::AttachConsole(CS_XOR(L"gamesense dev-mode")))
 	{
 		CS_ASSERT(false); // failed to attach console
 		return false;
 	}
 #endif
 #ifdef CS_LOG_FILE
-	if (!L::OpenFile(CS_XOR(L"asphyxia.log")))
+	if (!L::OpenFile(CS_XOR(L"gamesense.log")))
 	{
 		CS_ASSERT(false); // failed to open file
 		return false;
@@ -164,7 +164,7 @@ static bool Setup(HMODULE hModule)
 	else
 		L_PRINT(LOG_NONE) << L::SetColor(LOG_COLOR_FORE_GREEN | LOG_COLOR_FORE_INTENSITY) << CS_XOR("configuration system initialization completed");
 
-	L_PRINT(LOG_NONE) << L::SetColor(LOG_COLOR_FORE_CYAN | LOG_COLOR_FORE_INTENSITY) << CS_XOR("asphyxia initialization completed, version: ") << CS_STRINGIFY(CS_VERSION);
+	L_PRINT(LOG_NONE) << L::SetColor(LOG_COLOR_FORE_CYAN | LOG_COLOR_FORE_INTENSITY) << CS_XOR("gamesense initialization completed, version: ") << CS_STRINGIFY(CS_VERSION);
 	return true;
 }
 
